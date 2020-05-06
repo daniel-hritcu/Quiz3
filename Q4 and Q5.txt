@@ -1,0 +1,7 @@
+4- What is the difference between code-first approach and database approach in Entity
+framework?
+
+4-	Codefirst: The DB is designed around our models and DBContext.
+	DataBase: We design the models and DBContext around our DB.
+
+5- What is the MVVM design pattern? 	MVVM (Model View ViewModel)	It's a design pattern used to separate the 'UI' from the logic of our application.
