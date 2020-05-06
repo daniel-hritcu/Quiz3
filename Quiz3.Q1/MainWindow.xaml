@@ -5,8 +5,61 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Quiz3.Q1"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="550" Width="550" Loaded="Window_Loaded">
+
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+
+        <!--Add Student-->
+        <Border BorderBrush="Gray" BorderThickness="1" Margin="5" Padding="5" CornerRadius="3 0 0 3" HorizontalAlignment="Center" Grid.Row="0">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Margin="10" Padding="2" Grid.Row="0" Grid.Column="0" Text="Id"/>
+                <TextBox Name="id" Margin="10" Padding="2" Grid.Row="0" Grid.Column="1" Width="150"></TextBox>
+
+                <TextBlock Margin="10" Padding="2" Grid.Row="1" Grid.Column="0" Text="First Name"/>
+                <TextBox Name="fName" Margin="10" Padding="2" Grid.Row="1" Grid.Column="1" Width="150"></TextBox>
+
+                <TextBlock Margin="10" Padding="2" Grid.Row="2" Grid.Column="0" Text="Last Name"/>
+                <TextBox Name="lName" Margin="10" Padding="2" Grid.Row="2" Grid.Column="1" Width="150"></TextBox>
+
+                <CheckBox Name="isRegistered" Margin="10" Padding="2" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2">Is Registered?</CheckBox>
+
+                <Button Click="AddStudentButton_Clicked"  Margin="10" Padding="5" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center">Add Student</Button>
+            </Grid>
+        </Border>
         
+        <!--StudentList-->
+        <Border BorderBrush="Gray" BorderThickness="1" Margin="10" Padding="10" CornerRadius="3" HorizontalAlignment="Center" Grid.Row="1">
+            <Grid>
+                <DataGrid Name="StudentListGrid" ItemsSource="{Binding}" AutoGenerateColumns="False" >
+                    <DataGrid.RowStyle>
+                        <Style TargetType="DataGridRow">
+                            <Setter Property="IsEnabled" Value="{Binding RelativeSource={RelativeSource Self},Path=IsNewItem,Mode=OneWay}" />
+                        </Style>
+                    </DataGrid.RowStyle>
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Id"  Binding="{Binding FirstName}"/>
+                        <DataGridTextColumn Header="First Name" Binding="{Binding FirstName}" />
+                        <DataGridTextColumn Header="Last Name" Binding="{Binding LastName}" />
+                        <DataGridCheckBoxColumn Header="Member?" Binding="{Binding IsRegistered}" />
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+        </Border>
     </Grid>
 </Window>

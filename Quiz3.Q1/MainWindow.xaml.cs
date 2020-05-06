@@ -1,17 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Quiz3.Q1.Models;
+using System.Collections.ObjectModel;
+
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+
 
 namespace Quiz3.Q1
 {
@@ -20,9 +11,59 @@ namespace Quiz3.Q1
     /// </summary>
     public partial class MainWindow : Window
     {
+        private ObservableCollection<Student> Students { get; set; }
+
         public MainWindow()
         {
             InitializeComponent();
+
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            Students = new ObservableCollection<Student>();
+            GetData();
+            StudentListGrid.DataContext = Students;
+        }
+
+        private void AddStudentButton_Clicked(object sender, RoutedEventArgs e)
+        {
+            //TODO: Validation
+
+          Student student = new Student()
+            {
+                Id = int.Parse(id.Text),
+                FirstName = fName.Text,
+                LastName = lName.Text,
+                IsRegistered = isRegistered.IsChecked
+            };
+            Students.Add(student);
+        }
+
+        private void GetData() {
+            Students.Add(new Student()
+            {
+                Id = 1,
+                FirstName = "S1FN",
+                LastName = "S1LN",
+                IsRegistered = true
+            });
+
+            Students.Add(new Student()
+            {
+                Id = 2,
+                FirstName = "S2FN",
+                LastName = "S2LN",
+                IsRegistered = false
+            }); ;
+
+            Students.Add(new Student()
+            {
+                Id = 3,
+                FirstName = "S3FN",
+                LastName = "S3LN",
+                IsRegistered = true
+            }); ;
         }
     }
 }
